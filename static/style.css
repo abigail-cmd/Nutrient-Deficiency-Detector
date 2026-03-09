@@ -1,0 +1,500 @@
+body {
+    font-family: "Times New Roman", serif;
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.card {
+    border-radius: 18px;
+}
+
+.hero-card {
+    background: linear-gradient(135deg, #ffffff, #f3f8ff);
+}
+
+.feature-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+}
+
+.feature-icon {
+    font-size: 2rem;
+}
+
+.card-body h1,
+.card-body h2,
+.card-body h3,
+.card-body h4,
+.card-body h5 {
+    font-weight: 700;
+}
+
+.form-control,
+.form-select {
+    border-radius: 12px;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+}
+
+.border-start {
+    border-left-width: 5px !important;
+}
+
+.btn {
+    border-radius: 10px;
+}
+
+
+.custom-navbar {
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+}
+
+.logo-circle {
+    width: 36px;
+    height: 36px;
+    background: white;
+    color: #2563eb;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.navbar-brand {
+    font-size: 1.1rem;
+}
+
+.nav-link {
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    opacity: 0.85;
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+
+.custom-navbar {
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-circle {
+    width: 38px;
+    height: 38px;
+    background: white;
+    color: #2563eb;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.navbar-brand {
+    font-size: 1.1rem;
+}
+
+.nav-link {
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    opacity: 0.9;
+}
+
+.dropdown-menu {
+    border-radius: 14px;
+    padding: 0.5rem;
+}
+
+.dropdown-item {
+    border-radius: 10px;
+    padding: 0.55rem 0.9rem;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f5f9;
+}
+
+.loading-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.82);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(2px);
+}
+
+.loading-box {
+    background: white;
+    padding: 30px 36px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    min-width: 260px;
+}
+
+
+canvas#nutrientChart {
+    min-height: 320px !important;
+}
+
+.chart-wrap {
+    position: relative;
+    height: 280px;
+    max-height: 280px;
+    width: 100%;
+}
+
+#nutrientChart {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.history-table th,
+.history-table td {
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.history-table td:last-child,
+.history-table th:last-child {
+    min-width: 170px;
+}
+
+.history-table .btn {
+    min-width: 70px;
+}
+
+.result-hero {
+    background: linear-gradient(135deg, #f8fbff, #eef5ff);
+    border-left: 6px solid #2563eb;
+}
+
+.metric-card {
+    transition: all 0.25s ease;
+    border-radius: 18px;
+}
+
+.metric-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+.soft-card {
+    border-radius: 18px;
+    background: #ffffff;
+}
+
+.summary-pill {
+    display: inline-block;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.pill-low {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.pill-moderate {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.pill-high {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.recommend-card {
+    border-radius: 16px;
+    transition: all 0.2s ease;
+}
+
+.recommend-card:hover {
+    transform: scale(1.01);
+}
+
+.chart-wrap {
+    position: relative;
+    height: 240px;
+    max-height: 240px;
+    width: 100%;
+}
+
+#nutrientChart {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.45s ease;
+}
+
+
+.hero-premium {
+    background: linear-gradient(135deg, #f8fbff 0%, #eef4ff 100%);
+    border-radius: 28px;
+    padding: 2rem;
+}
+
+.hero-badge {
+    background: #dbeafe;
+    color: #1d4ed8;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.hero-title {
+    font-size: 2.6rem;
+    font-weight: 800;
+    line-height: 1.15;
+}
+
+.hero-subtitle {
+    font-size: 1.08rem;
+    color: #64748b;
+    max-width: 650px;
+}
+
+.hero-side-card {
+    background: white;
+    border-radius: 22px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.hero-feature-item {
+    display: flex;
+    gap: 0.9rem;
+    align-items: flex-start;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #eef2f7;
+}
+
+.hero-feature-item:last-child {
+    border-bottom: none;
+}
+
+.hero-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+}
+
+.stat-card {
+    border-radius: 20px;
+}
+
+.stat-number {
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: #2563eb;
+}
+
+.stat-label {
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.info-card {
+    border-radius: 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-4px);
+}
+
+.info-icon {
+    font-size: 2rem;
+}
+
+.form-shell {
+    border-radius: 24px;
+    background: #ffffff;
+}
+
+.form-section {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eef2f7;
+}
+
+.form-section:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.how-card {
+    border-radius: 20px;
+}
+
+.step-number {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #dbeafe;
+    color: #1d4ed8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-premium {
+        padding: 1.4rem;
+    }
+}
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media print {
+    .btn, .navbar {
+        display: none !important;
+    }
+
+    body {
+        background: white !important;
+    }
+
+    .card {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+    }
+}
+@media print {
+    .btn, .navbar {
+        display: none !important;
+    }
+
+    body {
+        background: white !important;
+    }
+
+    .card {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .hero-card .card-body {
+        padding: 1.5rem !important;
+    }
+
+    .display-6 {
+        font-size: 2rem;
+    }
+
+    .navbar-brand {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-body {
+        padding: 1rem !important;
+    }
+
+    .btn-lg {
+        width: 100%;
+    }
+
+    .d-flex.gap-3 {
+        flex-direction: column;
+    }
+
+    .table {
+        font-size: 0.9rem;
+    }
+
+    .feature-icon {
+        font-size: 1.6rem;
+    }
+
+    h1, h2, h3, h4 {
+        line-height: 1.3;
+    }
+}
+
+@media (max-width: 576px) {
+    .logo-circle {
+        width: 32px;
+        height: 32px;
+        font-size: 0.85rem;
+    }
+
+    .navbar-brand {
+        gap: 0.4rem !important;
+    }
+
+    .display-6 {
+        font-size: 1.6rem;
+    }
+
+    .lead {
+        font-size: 1rem;
+    }
+
+    .form-control-lg,
+    .form-select-lg {
+        font-size: 1rem;
+        padding: 0.65rem 0.8rem;
+    }
+
+    .loading-box {
+        min-width: unset;
+        width: 90%;
+        padding: 24px;
+    }
+}
+
+/* 
+canvas#nutrientChart {
+    min-height: 320px !important;
+} */

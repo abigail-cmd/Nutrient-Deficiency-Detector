@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="mb-1">Saved Analysis History</h2>
+        <p class="text-muted mb-0">Previously stored user health assessments</p>
+    </div>
+</div>
+
+<div class="card shadow-sm border-0">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle history-table">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>BMI</th>
+                        <th>BMI Status</th>
+                        <th>Calorie Need</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in records %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                        <td>{{ row[3] }}</td>
+                        <td>{{ row[7] }}</td>
+                        <td>
+                            {% if row[8] == "Normal weight" %}
+                                <span class="badge bg-success">{{ row[8] }}</span>
+                            {% elif row[8] == "Underweight" %}
+                                <span class="badge bg-warning text-dark">{{ row[8] }}</span>
+                            {% else %}
+                                <span class="badge bg-danger">{{ row[8] }}</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ row[9] }}</td>
+                        <td class="text-center">
+                            <div class="d-flex justify-content-center gap-2 flex-wrap">
+                                <a href="/record/{{ row[0] }}" class="btn btn-sm btn-outline-primary">
+                                    View
+                                </a>
+                                <a href="/delete/{{ row[0] }}" class="btn btn-sm btn-outline-danger">
+                                    Delete
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% if not records %}
+            <div class="alert alert-info mt-3 mb-0">
+                No saved records yet.
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

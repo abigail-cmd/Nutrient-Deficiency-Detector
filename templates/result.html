@@ -1,0 +1,286 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card shadow-sm border-0 result-hero mb-4 fade-in-up">
+    <div class="card-body d-flex justify-content-between align-items-center flex-wrap gap-3">
+        <div>
+            <h2 class="mb-1">Health Analysis Result</h2>
+            <p class="text-muted mb-0">Comprehensive BMI, calorie, and nutrition report for <strong>{{ name }}</strong></p>
+        </div>
+        <button onclick="window.print()" class="btn btn-outline-primary">Print Report</button>
+    </div>
+</div>
+
+<div class="row g-4 mb-4 fade-in-up">
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0 metric-card h-100">
+            <div class="card-body">
+                <h6 class="text-muted">BMI</h6>
+                <h3 class="fw-bold">{{ bmi }}</h3>
+                <span class="badge 
+                    {% if bmi_status == 'Normal weight' %}bg-success
+                    {% elif bmi_status == 'Underweight' %}bg-warning text-dark
+                    {% else %}bg-danger{% endif %}">
+                    {{ bmi_status }}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0 metric-card h-100">
+            <div class="card-body">
+                <h6 class="text-muted">Daily Calorie Need</h6>
+                <h3 class="fw-bold">{{ calorie_needs }}</h3>
+                <p class="mb-0 text-muted">kcal/day</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0 metric-card h-100">
+            <div class="card-body">
+                <h6 class="text-muted">Nutrition Issues</h6>
+                <h3 class="fw-bold">{{ issue_count }}</h3>
+                <p class="mb-0 text-muted">{{ deficient_count }} deficient, {{ excess_count }} excess</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow-sm border-0 soft-card mb-4 fade-in-up">
+    <div class="card-body">
+        <h4 class="mb-3">Overall Health Summary</h4>
+
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="p-3 rounded bg-light h-100">
+                    <h6 class="text-muted">Risk Level</h6>
+
+                    {% if risk_level == "Low" %}
+                        <span class="summary-pill pill-low">{{ risk_level }}</span>
+                    {% elif risk_level == "Moderate" %}
+                        <span class="summary-pill pill-moderate">{{ risk_level }}</span>
+                    {% else %}
+                        <span class="summary-pill pill-high">{{ risk_level }}</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="p-3 rounded bg-light h-100">
+                    <h6 class="text-muted">System Interpretation</h6>
+                    <p class="mb-0">{{ overall_summary }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mb-4 fade-in-up">
+    <div class="col-lg-6">
+        <div class="card shadow-sm border-0 soft-card h-100">
+            <div class="card-body">
+                <h4 class="mb-3">BMI Advice</h4>
+                <div class="alert alert-info mb-0">{{ bmi_advice }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card shadow-sm border-0 soft-card h-100">
+            <div class="card-body">
+                <h4 class="mb-3">Calorie Intake Evaluation</h4>
+                <div class="alert 
+                    {% if calorie_difference > 0 %}alert-warning
+                    {% elif calorie_difference < 0 %}alert-danger
+                    {% else %}alert-success{% endif %} mb-0">
+                    {{ calorie_message }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow-sm border-0 soft-card mb-4 fade-in-up">
+    <div class="card-body">
+        <h4 class="mb-3">Nutrition Imbalance Summary</h4>
+
+        {% if issue_count == 0 %}
+            <div class="alert alert-success mb-0">
+                No nutrient deficiency or excess was detected based on the entered intake values.
+            </div>
+        {% else %}
+            <div class="alert alert-warning mb-0">
+                {{ issue_count }} nutritional issue{% if issue_count > 1 %}s were{% else %} was{% endif %} detected:
+                {{ deficient_count }} deficiency{% if deficient_count != 1 %}ies{% endif %}
+                and {{ excess_count }} excess case{% if excess_count != 1 %}s{% endif %}.
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="card shadow-sm border-0 soft-card mb-4 fade-in-up">
+    <div class="card-body">
+        <h4 class="mb-3">Nutrition Evaluation Table</h4>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Nutrient</th>
+                        <th>Intake</th>
+                        <th>RDA</th>
+                        <th>Upper Limit</th>
+                        <th>Status</th>
+                        <th>Gap</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for nutrient, info in report.items() %}
+                    <tr>
+                        <td class="fw-semibold">{{ nutrient.replace('_', ' ').title() }}</td>
+                        <td>{{ info.intake }}</td>
+                        <td>{{ info.rda }}</td>
+                        <td>{{ info.upper_limit }}</td>
+                        <td>
+                            {% if info.status == "Adequate" %}
+                                <span class="badge bg-success">Adequate</span>
+                            {% elif info.status == "Deficient" %}
+                                <span class="badge bg-danger">Deficient</span>
+                            {% else %}
+                                <span class="badge bg-warning text-dark">Excess</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ info.gap }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mb-4 fade-in-up">
+    <div class="col-lg-7">
+        <div class="card shadow-sm border-0 soft-card h-100">
+            <div class="card-body">
+                <h4 class="mb-3">Nutrient Intake Chart</h4>
+                <div class="chart-wrap">
+                    <canvas id="nutrientChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="card shadow-sm border-0 soft-card h-100">
+            <div class="card-body">
+                <h4 class="mb-3">Dietary Recommendations</h4>
+
+                {% for nutrient, info in report.items() %}
+                    {% if info.status == "Deficient" %}
+                        <div class="mb-3 p-3 recommend-card bg-light border-start border-4 border-danger">
+                            <h6 class="mb-1">⚠ {{ nutrient.replace('_', ' ').title() }} - Deficiency</h6>
+                            <p class="mb-0 small">{{ info.recommendation }}</p>
+                        </div>
+                    {% elif info.status == "Excess" %}
+                        <div class="mb-3 p-3 recommend-card bg-light border-start border-4 border-warning">
+                            <h6 class="mb-1">⚠ {{ nutrient.replace('_', ' ').title() }} - Excess</h6>
+                            <p class="mb-0 small">{{ info.recommendation }}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                {% if issue_count == 0 %}
+                    <div class="alert alert-success mb-0">
+                        No nutritional deficiency or excess was detected.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<form action="/download_report" method="POST" class="mt-4">
+    <input type="hidden" name="name" value="{{ name }}">
+    <input type="hidden" name="bmi" value="{{ bmi }}">
+    <input type="hidden" name="bmi_status" value="{{ bmi_status }}">
+    <input type="hidden" name="calorie_needs" value="{{ calorie_needs }}">
+    <input type="hidden" name="risk_level" value="{{ risk_level }}">
+    <input type="hidden" name="overall_summary" value="{{ overall_summary }}">
+
+    {% for nutrient, info in report.items() %}
+        <input type="hidden" name="{{ nutrient }}_intake" value="{{ info.intake }}">
+        <input type="hidden" name="{{ nutrient }}_rda" value="{{ info.rda }}">
+        <input type="hidden" name="{{ nutrient }}_upper" value="{{ info.upper_limit }}">
+        <input type="hidden" name="{{ nutrient }}_status" value="{{ info.status }}">
+        <input type="hidden" name="{{ nutrient }}_recommendation" value="{{ info.recommendation }}">
+    {% endfor %}
+
+    <div class="d-flex justify-content-left gap-3 flex-wrap mt-4">
+        <button type="submit" class="btn btn-success">
+            Download PDF Report
+        </button>
+        <a href="/" class="btn btn-primary">Run New Analysis</a>
+    </div>
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const chartCanvas = document.getElementById('nutrientChart');
+
+if (chartCanvas) {
+    new Chart(chartCanvas, {
+        type: 'bar',
+        data: {
+            labels: ['Protein', 'Iron', 'Calcium', 'Vitamin A', 'Vitamin C', 'Calories'],
+            datasets: [
+                {
+                    label: 'User Intake',
+                    data: [
+                        {{ report["protein"]["intake"] }},
+                        {{ report["iron"]["intake"] }},
+                        {{ report["calcium"]["intake"] }},
+                        {{ report["vitamin_a"]["intake"] }},
+                        {{ report["vitamin_c"]["intake"] }},
+                        {{ report["calories"]["intake"] }}
+                    ]
+                },
+                {
+                    label: 'RDA',
+                    data: [
+                        {{ report["protein"]["rda"] }},
+                        {{ report["iron"]["rda"] }},
+                        {{ report["calcium"]["rda"] }},
+                        {{ report["vitamin_a"]["rda"] }},
+                        {{ report["vitamin_c"]["rda"] }},
+                        {{ report["calories"]["rda"] }}
+                    ]
+                },
+                {
+                    label: 'Upper Limit',
+                    data: [
+                        {{ report["protein"]["upper_limit"] }},
+                        {{ report["iron"]["upper_limit"] }},
+                        {{ report["calcium"]["upper_limit"] }},
+                        {{ report["vitamin_a"]["upper_limit"] }},
+                        {{ report["vitamin_c"]["upper_limit"] }},
+                        {{ report["calories"]["upper_limit"] }}
+                    ]
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top'
+                }
+            }
+        }
+    });
+}
+</script>
+
+{% endblock %}

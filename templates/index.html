@@ -1,0 +1,280 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="hero-premium shadow-sm mb-5 fade-in-up">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+            <span class="hero-badge mb-3 d-inline-block">Rule-Based Health Intelligence</span>
+            <h1 class="hero-title mb-3">
+                Nutrition Deficiency Detection System
+            </h1>
+            <p class="hero-subtitle mb-4">
+                A smart health assessment platform that combines BMI analysis, calorie estimation,
+                and rule-based nutrient evaluation to detect possible nutritional deficiencies or excess intake.
+            </p>
+
+            <div class="d-flex flex-wrap gap-3">
+                <a href="#analysis-form" class="btn btn-primary btn-lg px-4">Start Analysis</a>
+                <a href="/history" class="btn btn-outline-primary btn-lg px-4">View History</a>
+            </div>
+        </div>
+
+        <div class="col-lg-5">
+            <div class="hero-side-card">
+                <h5 class="fw-bold mb-3">What this system does</h5>
+
+                <div class="hero-feature-item">
+                    <span class="hero-icon">📏</span>
+                    <div>
+                        <div class="fw-semibold">BMI Assessment</div>
+                        <small class="text-muted">Evaluates body mass index and health category.</small>
+                    </div>
+                </div>
+
+                <div class="hero-feature-item">
+                    <span class="hero-icon">🔥</span>
+                    <div>
+                        <div class="fw-semibold">Calorie Estimation</div>
+                        <small class="text-muted">Calculates estimated daily calorie requirements.</small>
+                    </div>
+                </div>
+
+                <div class="hero-feature-item">
+                    <span class="hero-icon">🥗</span>
+                    <div>
+                        <div class="fw-semibold">Nutrient Analysis</div>
+                        <small class="text-muted">Checks for deficiency and excess using RDA rules.</small>
+                    </div>
+                </div>
+
+                <div class="hero-feature-item mb-0">
+                    <span class="hero-icon">📄</span>
+                    <div>
+                        <div class="fw-semibold">PDF Health Report</div>
+                        <small class="text-muted">Generates a downloadable report for record keeping.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mb-5 fade-in-up">
+    <div class="col-md-3">
+        <div class="card stat-card shadow-sm border-0 h-100">
+            <div class="card-body text-center">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Nutrients Evaluated</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card stat-card shadow-sm border-0 h-100">
+            <div class="card-body text-center">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Core Analyses</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card stat-card shadow-sm border-0 h-100">
+            <div class="card-body text-center">
+                <div class="stat-number">PDF</div>
+                <div class="stat-label">Report Export</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card stat-card shadow-sm border-0 h-100">
+            <div class="card-body text-center">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Instant Analysis</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mb-5 fade-in-up">
+    <div class="col-md-4">
+        <div class="card info-card shadow-sm border-0 h-100">
+            <div class="card-body text-center p-4">
+                <div class="info-icon mb-3">🩺</div>
+                <h5 class="fw-bold">Health Awareness</h5>
+                <p class="text-muted mb-0">
+                    Helps users understand body condition, calorie requirements, and nutritional balance.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card info-card shadow-sm border-0 h-100">
+            <div class="card-body text-center p-4">
+                <div class="info-icon mb-3">⚙️</div>
+                <h5 class="fw-bold">Rule-Based Engine</h5>
+                <p class="text-muted mb-0">
+                    Uses predefined nutritional rules and thresholds for interpretable decision support.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card info-card shadow-sm border-0 h-100">
+            <div class="card-body text-center p-4">
+                <div class="info-icon mb-3">📊</div>
+                <h5 class="fw-bold">Interactive Reporting</h5>
+                <p class="text-muted mb-0">
+                    Presents results through dashboards, charts, recommendations, history, and PDF reports.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card form-shell shadow-sm border-0 mb-5 fade-in-up" id="analysis-form">
+    <div class="card-body p-4 p-lg-5">
+        <div class="mb-4">
+            <h2 class="fw-bold mb-2">Run New Health Analysis</h2>
+            <p class="text-muted mb-0">
+                Enter your personal information, body measurements, and nutrient intake values.
+            </p>
+        </div>
+
+        <form action="/result" method="POST">
+            <div class="form-section mb-4">
+                <h4 class="section-title">Personal Information</h4>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" name="name" class="form-control form-control-lg" required>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label">Age</label>
+                        <input type="number" name="age" class="form-control form-control-lg" required>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label">Gender</label>
+                        <select name="gender" class="form-select form-select-lg" required>
+                            <option value="" disabled selected>Select gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section mb-4">
+                <h4 class="section-title">Body Measurements</h4>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Height (cm)</label>
+                        <input type="number" name="height" step="0.01" class="form-control form-control-lg" required>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Weight (kg)</label>
+                        <input type="number" name="weight" step="0.01" class="form-control form-control-lg" required>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Activity Level</label>
+                        <select name="activity_level" class="form-select form-select-lg" required>
+                            <option value="" disabled selected>Select level</option>
+                            <option value="sedentary">Sedentary</option>
+                            <option value="light">Lightly Active</option>
+                            <option value="moderate">Moderately Active</option>
+                            <option value="active">Active</option>
+                            <option value="very_active">Very Active</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section mb-4">
+                <h4 class="section-title">Daily Nutrient Intake</h4>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Protein (g)</label>
+                        <input type="number" name="protein" step="0.01" class="form-control form-control-lg" required>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Iron (mg)</label>
+                        <input type="number" name="iron" step="0.01" class="form-control form-control-lg" required>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Calcium (mg)</label>
+                        <input type="number" name="calcium" step="0.01" class="form-control form-control-lg" required>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Vitamin A (mcg)</label>
+                        <input type="number" name="vitamin_a" step="0.01" class="form-control form-control-lg" required>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Vitamin C (mg)</label>
+                        <input type="number" name="vitamin_c" step="0.01" class="form-control form-control-lg" required>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Calories (kcal)</label>
+                        <input type="number" name="calories" step="0.01" class="form-control form-control-lg" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-3 mt-4">
+                <button type="submit" class="btn btn-primary btn-lg px-4">Analyze Health Status</button>
+                <button type="reset" class="btn btn-outline-secondary btn-lg px-4">Clear Form</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row g-4 mb-4 fade-in-up">
+    <div class="col-md-4">
+        <div class="card how-card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+                <div class="step-number mb-3">01</div>
+                <h5 class="fw-bold">Enter Your Data</h5>
+                <p class="text-muted mb-0">
+                    Provide your body measurements, activity level, and daily nutrient intake values.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card how-card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+                <div class="step-number mb-3">02</div>
+                <h5 class="fw-bold">System Analysis</h5>
+                <p class="text-muted mb-0">
+                    The system computes BMI, calorie needs, and compares nutrient intake with RDA thresholds.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card how-card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+                <div class="step-number mb-3">03</div>
+                <h5 class="fw-bold">Get Results</h5>
+                <p class="text-muted mb-0">
+                    View your health summary, recommendations, chart dashboard, saved record, and PDF report.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
