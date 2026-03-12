@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, send_file
 from bmi_calorie import calculate_bmi, bmi_status, calculate_calories, bmi_advice
 from rules import evaluate_deficiencies
-from database import init_db, save_result, get_history, get_record, delete_record
+from database import init_db, save_result, get_history, get_record, delete_record, get_dashboard_stats
 from pdf_report import generate_pdf_report
 
 app = Flask(__name__)
@@ -240,6 +240,11 @@ def download_report():
         mimetype="application/pdf",
     )
 
+
+@app.route("/dashboard")
+def dashboard():
+    stats = get_dashboard_stats()
+    return render_template("dashboard.html", stats=stats)
 
 if __name__ == "__main__":
     app.run(debug=True)

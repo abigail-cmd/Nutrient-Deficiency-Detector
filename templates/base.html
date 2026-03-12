@@ -20,16 +20,24 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
+
+
+        
+
         <div class="collapse navbar-collapse" id="navMenu">
             <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/">🏠 Home</a>
-                </li>
+               <li class="nav-item">
+    <a class="nav-link" href="/">🏠 Home</a>
+</li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/history">📊 History</a>
-                </li>
+<li class="nav-item">
+    <a class="nav-link" href="/history">📋 History</a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/dashboard">📊 Dashboard</a>
+</li>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="systemDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -86,6 +94,14 @@
         <p class="text-muted mb-0">Please wait a moment</p>
     </div>
 </div>
+
+<footer class="app-footer mt-5">
+    <div class="container py-4 text-center">
+        <small>
+            Nutrition Deficiency Detection System • Final Year Project • Elaho Abigail 
+        </small>
+    </div>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{ url_for('static', filename='script.js') }}"></script>

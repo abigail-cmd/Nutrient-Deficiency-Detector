@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+    <div>
+        <h2 class="mb-1">System Dashboard</h2>
+        <p class="text-muted mb-0">Overview of stored health analysis records</p>
+    </div>
+    <a href="/" class="btn btn-primary">Run New Analysis</a>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-6 col-xl-3">
+        <div class="card shadow-sm border-0 dashboard-card h-100">
+            <div class="card-body">
+                <h6 class="text-muted">Total Analyses</h6>
+                <h2 class="fw-bold mb-0">{{ stats.total_records }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card shadow-sm border-0 dashboard-card h-100">
+            <div class="card-body">
+                <h6 class="text-muted">Average BMI</h6>
+                <h2 class="fw-bold mb-0">{{ stats.avg_bmi }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card shadow-sm border-0 dashboard-card h-100">
+            <div class="card-body">
+                <h6 class="text-muted">Male Records</h6>
+                <h2 class="fw-bold mb-0">{{ stats.male_count }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card shadow-sm border-0 dashboard-card h-100">
+            <div class="card-body">
+                <h6 class="text-muted">Female Records</h6>
+                <h2 class="fw-bold mb-0">{{ stats.female_count }}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-7">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body">
+                <h4 class="mb-3">Risk Distribution</h4>
+                <div class="dashboard-chart-wrap">
+                    <canvas id="riskChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body">
+                <h4 class="mb-3">Risk Summary</h4>
+
+                <div class="mb-3 p-3 rounded bg-light border-start border-4 border-success">
+                    <div class="small text-muted">Low Risk</div>
+                    <div class="fw-bold">{{ stats.low_risk }}</div>
+                </div>
+
+                <div class="mb-3 p-3 rounded bg-light border-start border-4 border-warning">
+                    <div class="small text-muted">Moderate Risk</div>
+                    <div class="fw-bold">{{ stats.moderate_risk }}</div>
+                </div>
+
+                <div class="p-3 rounded bg-light border-start border-4 border-danger">
+                    <div class="small text-muted">High Risk</div>
+                    <div class="fw-bold">{{ stats.high_risk }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const riskCtx = document.getElementById('riskChart');
+
+if (riskCtx) {
+    new Chart(riskCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Low Risk', 'Moderate Risk', 'High Risk'],
+            datasets: [{
+                data: [
+                    {{ stats.low_risk }},
+                    {{ stats.moderate_risk }},
+                    {{ stats.high_risk }}
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+}
+</script>
+
+{% endblock %}

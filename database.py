@@ -91,3 +91,47 @@ def delete_record(record_id):
     conn.commit()
 
     conn.close()
+    
+    
+    
+def get_dashboard_stats():
+    conn = sqlite3.connect(DB_NAME)
+    cursor = conn.cursor()
+
+    # total analyses
+    cursor.execute("SELECT COUNT(*) FROM results")
+    total_records = cursor.fetchone()[0]
+
+    # average BMI
+    cursor.execute("SELECT AVG(bmi) FROM results")
+    avg_bmi_result = cursor.fetchone()[0]
+    avg_bmi = round(avg_bmi_result, 2) if avg_bmi_result else 0
+
+    # risk distribution
+    cursor.execute("SELECT COUNT(*) FROM results WHERE risk_level = 'Low'")
+    low_risk = cursor.fetchone()[0]
+
+    cursor.execute("SELECT COUNT(*) FROM results WHERE risk_level = 'Moderate'")
+    moderate_risk = cursor.fetchone()[0]
+
+    cursor.execute("SELECT COUNT(*) FROM results WHERE risk_level = 'High'")
+    high_risk = cursor.fetchone()[0]
+
+    # gender distribution
+    cursor.execute("SELECT COUNT(*) FROM results WHERE gender = 'male'")
+    male_count = cursor.fetchone()[0]
+
+    cursor.execute("SELECT COUNT(*) FROM results WHERE gender = 'female'")
+    female_count = cursor.fetchone()[0]
+
+    conn.close()
+
+    return {
+        "total_records": total_records,
+        "avg_bmi": avg_bmi,
+        "low_risk": low_risk,
+        "moderate_risk": moderate_risk,
+        "high_risk": high_risk,
+        "male_count": male_count,
+        "female_count": female_count,
+    }
